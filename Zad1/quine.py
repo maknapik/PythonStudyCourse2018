@@ -98,6 +98,8 @@ class Func:
         self.Variables = expression.getVariables(expr)
 
     def reduceTerms(self):
+        if len(self.Terms) < 2:
+            return
         while len(self.Terms) != 1:
             self.Terms[0] = self.Terms[0].multiplySet(self.Terms[1])
             self.Terms[0].deleteSame()
@@ -193,14 +195,17 @@ def proceed():
             print("Expression is a tautology")
         else:
             func = Func(expr)
-            print("Minterms: " + str(func.Minterms))
-            func.reduce()
-            print("Reduced minterms: " + str(func.Minterms))
-            func.setSets()
-            #func.showTerms()
-            func.reduceTerms()
-            print("Result:")
-            func.printResult()
+            if len(func.Minterms) < 1:
+                print("Result:\n0")
+            else:
+                print("Minterms: " + str(func.Minterms))
+                func.reduce()
+                print("Reduced minterms: " + str(func.Minterms))
+                func.setSets()
+                #func.showTerms()
+                func.reduceTerms()
+                print("Result:")
+                func.printResult()
     else:
         print("Wrong expression")
 
