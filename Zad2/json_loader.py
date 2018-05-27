@@ -15,7 +15,7 @@ def read_screen_settings(content):
     try:
         return content["Screen"]
     except KeyError:
-        print("Screen JSON: KeyError")
+        print("Screen JSON reading: KeyError")
         sys.exit(1)
 
 
@@ -23,5 +23,5 @@ def read_palette(content):
     try:
         return content["Palette"]
     except KeyError:
-        print("Palette JSON: KeyError")
+        print("Palette JSON reading: KeyError")
         sys.exit(1)
