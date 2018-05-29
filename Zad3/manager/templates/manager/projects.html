@@ -1,0 +1,30 @@
+{% extends 'manager/base.html' %}
+{% block title %}Projects{% endblock %}
+{% block body %}
+    <div class="row content">
+    {% if projects %}
+            {% for project in projects %}
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="{% url 'manager:project' project.id %}">
+                                <h3>{{ project.name }}</h3>
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            {{ project.description }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>No projects</h3>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

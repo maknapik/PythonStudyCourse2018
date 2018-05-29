@@ -1,0 +1,32 @@
+{% extends 'manager/base.html' %}
+{% block title %}Employees{% endblock %}
+{% block body %}
+    <div class="row content">
+    {% if employees %}
+            {% for employee in employees %}
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="{% url 'manager:employee' employee.id %}">
+                                <h3>{{ employee.name }} {{ employee.surname }}</h3>
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-12 text-center">
+                        <img src="{{ employee.photo.url }}" class="img-responsive">
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>No employees</h3>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+body {
+    background: white url("images/background.jpg");
+}
+
+.content {
+    padding: 0 15px;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.panel-default {
+    border-color: #101010;
+}
+
+.panel-heading {
+    border-radius: 0;
+}
+
+.panel-default>.panel-heading {
+    background-color: #222222;
+    color: #9D9D9D;
+    border: none;
+}
+
+.panel-default>.panel-body {
+    background-color: #9D9D9D;
+}
+
+.panel-body>.col-sm-12>img {
+    max-height: 200px;
+    display: inline;
+}
+
+.buttons {
+    border-top: 1px solid #101010;
+}
+
+.buttons>.col-sm-6 {
+    padding-top: 15px;
+}

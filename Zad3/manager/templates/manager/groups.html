@@ -1,0 +1,57 @@
+{% extends 'manager/base.html' %}
+{% block title %}Groups{% endblock %}
+{% block body %}
+    <div class="row content">
+    {% if groups %}
+        {% for group in groups %}
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="{% url 'manager:group' group.id %}">
+                        <h3>{{ group.name }}</h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12 text-center">
+                        <img src="{{ group.photo.url }}" class="img-responsive">
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <p>{{ group.description }}</p>
+                    </div>
+                    <div class="col-sm-12 text-center buttons">
+                        <div class="col-sm-6 text-center">
+                            <form action="{% url 'manager:delete_group' group.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="group_id" value="{{ group.id }}"/>
+                                <button type="submit" class="btn btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Delete
+                            </button>
+                            </form>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <form action="{% url 'manager:update_group' group.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="group_id" value="{{ group.id }}"/>
+                                <button type="submit" class="btn btn-sm">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Edit
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-sm-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>No groups</h3>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+    </div>
+{% endblock %}

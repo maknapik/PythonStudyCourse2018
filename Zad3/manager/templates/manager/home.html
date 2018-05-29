@@ -1,0 +1,30 @@
+{% extends 'manager/base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Groups</h3></div>
+                <div class="panel-body">
+                    {{ group_count }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Employees</h3></div>
+                <div class="panel-body">
+                    {{ employee_count }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Projects</h3></div>
+                <div class="panel-body">
+                    {{ project_count }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

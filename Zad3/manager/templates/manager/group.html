@@ -1,0 +1,56 @@
+{% extends 'manager/base.html' %}
+{% block title %}Group {{ group.name }}{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Group {{ group.name }}</h3></div>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img src="{{ group.photo.url }}" class="img-responsive">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 text-center">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   <h2>{{ group.description }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Employee's list</h3></div>
+            </div>
+        </div>
+        {% if employees %}
+            {% for employee in employees %}
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="{% url 'manager:employee' employee.id %}">
+                                <h3>{{ employee.name }} {{ employee.surname }}</h3>
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <img src="{{ employee.photo.url }}" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>No employees</h3>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
