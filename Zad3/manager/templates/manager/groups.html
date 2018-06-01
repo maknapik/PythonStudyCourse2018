@@ -1,4 +1,5 @@
 {% extends 'manager/base.html' %}
+{% load staticfiles %}
 {% block title %}Groups{% endblock %}
 {% block body %}
     <div class="row content">
@@ -13,7 +14,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-12 text-center">
-                        <img src="{{ group.photo.url }}" class="img-responsive">
+                        {% if group.photo %}
+                            <img src="{{ group.photo.url }}" class="img-responsive">
+                        {% else %}
+                            <img src="{% static "manager/images/group.gif" %}" class="img-responsive">
+                        {% endif %}
                     </div>
                     <div class="col-sm-12 text-center">
                         <p>{{ group.description }}</p>
@@ -30,7 +35,7 @@
                             </form>
                         </div>
                         <div class="col-sm-6 text-center">
-                            <form action="{% url 'manager:update_group' group.id %}" method="post">
+                            <form action="{% url 'manager:update_group' group.id %}" method="get">
                                 {% csrf_token %}
                                 <input type="hidden" name="group_id" value="{{ group.id }}"/>
                                 <button type="submit" class="btn btn-sm">

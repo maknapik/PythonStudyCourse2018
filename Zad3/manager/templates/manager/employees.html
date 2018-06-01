@@ -1,4 +1,5 @@
 {% extends 'manager/base.html' %}
+{% load staticfiles %}
 {% block title %}Employees{% endblock %}
 {% block body %}
     <div class="row content">
@@ -13,8 +14,34 @@
                         </div>
                         <div class="panel-body">
                             <div class="col-sm-12 text-center">
-                        <img src="{{ employee.photo.url }}" class="img-responsive">
-                    </div>
+                                {% if employee.photo %}
+                                    <img src="{{ employee.photo.url }}" class="img-responsive">
+                                {% else %}
+                                    <img src="{% static "manager/images/group.gif" %}" class="img-responsive">
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-12 text-center buttons">
+                                <div class="col-sm-6 text-center">
+                                    <form action="{% url 'manager:delete_employee' employee.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="group_id" value="{{ employee.id }}"/>
+                                        <button type="submit" class="btn btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                        Delete
+                                    </button>
+                                    </form>
+                                </div>
+                                <div class="col-sm-6 text-center">
+                                    <form action="{% url 'manager:update_employee' employee.id %}" method="get">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="group_id" value="{{ employee.id }}"/>
+                                        <button type="submit" class="btn btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Edit
+                                    </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

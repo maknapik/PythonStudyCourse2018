@@ -1,0 +1,45 @@
+{% load staticfiles %}
+{% load ifmatches %}
+<div class="col-sm-12 col-md-6 col-lg-4 text-center">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="{% url 'manager:employee' employee.id %}">
+                <h3>{{ employee.name }} {{ employee.surname }}</h3>
+            </a>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 text-center">
+                {% if employee.photo %}
+                    <img src="{{ employee.photo.url }}" class="img-responsive" style="margin: 0 0 10px;">
+                {% else %}
+                    <img src="{% static "manager/images/avatar.png" %}" class="img-responsive" style="margin: 0 0 10px;">
+                {% endif %}
+            </div>
+            <div class="col-sm-12 text-center buttons">
+                <div class="col-sm-12 text-center">
+                    {% ifmatches request.path "[a-z]+/groups/[0-9]+/$" %}
+                        <form action="{% url 'manager:remove_employee' group.id employee.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="group_id" value="{{ group.id }}"/>
+                            <button type="submit" class="btn btn-sm">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Remove
+                        </button>
+                        </form>
+                    {% endifmatches %}
+                    {% ifmatches request.path "[a-z]+/projects/[0-9]+/$" %}
+                        <form action="{% url 'manager:remove_employee_project' project.id employee.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="group_id" value="{{ project.id }}"/>
+                            <button type="submit" class="btn btn-sm">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Remove
+                        </button>
+                        </form>
+                    {% endifmatches %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

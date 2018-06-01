@@ -1,9 +1,10 @@
 body {
-    background: white url("images/background.jpg");
+    background: white url("images/background3.jpg");
+    background-attachment: fixed;
 }
 
-.content {
-    padding: 0 15px;
+.row {
+    margin: 0 0;
 }
 
 .navbar-brand {
@@ -12,6 +13,9 @@ body {
 
 .navbar {
     border-radius: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .panel-default {
@@ -42,5 +46,9 @@ body {
 }
 
 .buttons>.col-sm-6 {
+    padding-top: 15px;
+}
+
+.buttons>.col-sm-12 {
     padding-top: 15px;
 }

@@ -2,6 +2,7 @@ from django import template
 import re
 register = template.Library()
 
+
 @register.tag
 def ifmatches(parser, token):
     lst = token.split_contents()
@@ -15,6 +16,7 @@ def ifmatches(parser, token):
     else:
         nodelist_false = template.NodeList()
     return MatchesRegexNode(nodelist_true, nodelist_false, val, regex)
+
 
 class MatchesRegexNode(template.Node):
     def __init__(self, nodelist_true, nodelist_false, val, regex):

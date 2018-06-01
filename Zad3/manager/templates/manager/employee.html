@@ -1,4 +1,5 @@
 {% extends 'manager/base.html' %}
+{% load staticfiles %}
 {% block title %}Employee {{ employee.name }} {{ employee.surname }}{% endblock %}
 {% block body %}
     <div class="row">
@@ -10,15 +11,27 @@
         <div class="col-sm-4 text-center">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{{ employee.photo.url }}" class="img-responsive">
+                    {% if employee.photo %}
+                        <img src="{{ employee.photo.url }}" class="img-responsive">
+                    {% else %}
+                        <img src="{% static "manager/images/avatar.png" %}" class="img-responsive">
+                    {% endif %}
                 </div>
             </div>
         </div>
         <div class="col-sm-8 text-center">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Salary</h3></div>
+                <div class="panel-heading"><h3>Description</h3></div>
                 <div class="panel-body">
-                   <p>{{ employee.salary }}</p>
+                   <h4>Salary</h4><p>{{ employee.salary }}</p>
+                    <h4>Group</h4>
+                    <p>
+                        {% if employee.group %}
+                            {{ employee.group.name }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -31,18 +44,7 @@
         </div>
         {% if projects %}
             {% for project in projects %}
-                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="{% url 'manager:project' project.id %}">
-                                <h3>{{ project.name }}</h3>
-                            </a>
-                        </div>
-                        <div class="panel-body">
-                            <p>{{ project.description }}</p>
-                        </div>
-                    </div>
-                </div>
+                {% include 'manager/project_panel.html' %}
             {% endfor %}
         {% else %}
             <div class="col-sm-12 text-center">

@@ -1,11 +1,11 @@
 {% extends 'manager/base.html' %}
 {% load ifmatches %}
 {% block title %}
-    {% ifmatches request.path "[a-z]+/groups/add" %}
-        Add a new group
+    {% ifmatches request.path "[a-z]+/employees/add" %}
+        Add a new employee
     {% endifmatches %}
-    {% ifmatches request.path "[a-z]+/groups/[0-9]+/update" %}
-        Update group
+    {% ifmatches request.path "[a-z]+/employees/[0-9]+/update" %}
+        Update employee
     {% endifmatches %}
 {% endblock %}
 {% block body %}

@@ -29,8 +29,35 @@ urlpatterns = [
     url(r'^groups/add/$', views.CreateGroupView.as_view(), name='add_group'),
 
     # /groups/<pk>/update/
-    url(r'^groups/(?P<pk>[0-9]+)/delete/$', views.UpdateGroupView.as_view(), name='update_group'),
+    url(r'^groups/(?P<pk>[0-9]+)/update/$', views.UpdateGroupView.as_view(), name='update_group'),
 
     # /groups/<pk>/delete/
     url(r'^groups/(?P<pk>[0-9]+)/delete/$', views.DeleteGroupView.as_view(), name='delete_group'),
+
+    # /groups/<pk>/remove/<pk>/'
+    url(r'^groups/(?P<group>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_employee, name='remove_employee'),
+
+    # /employees/add
+    url(r'^employees/add/$', views.CreateEmployeeView.as_view(), name='add_employee'),
+
+    # /employees/<pk>/update/
+    url(r'^employees/(?P<pk>[0-9]+)/update/$', views.UpdateEmployeeView.as_view(), name='update_employee'),
+
+    # /employees/<pk>/delete/
+    url(r'^employees/(?P<pk>[0-9]+)/delete/$', views.DeleteEmployeeView.as_view(), name='delete_employee'),
+
+    # /projects/add
+    url(r'^projects/add/$', views.CreateProjectView.as_view(), name='add_employee'),
+
+    # /projects/<pk>/update/
+    url(r'^projects/(?P<pk>[0-9]+)/update/$', views.UpdateProjectView.as_view(), name='update_project'),
+
+    # /projects/<pk>/delete/
+    url(r'^projects/(?P<pk>[0-9]+)/delete/$', views.DeleteProjectView.as_view(), name='delete_project'),
+
+    # /projects/<pk>/remove/<pk>/'
+    url(r'^projects/(?P<project>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_employee_project, name='remove_employee_project'),
+
+    # /employees/<pk>/remove/<pk>/'
+    url(r'^employees/(?P<employee>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_project, name='remove_project'),
 ]
