@@ -1,11 +1,21 @@
 from django.conf.urls import url
 from . import views
+from django.contrib.auth.decorators import permission_required
 
 app_name = 'manager'
 
 urlpatterns = [
     # /home/
     url(r'^$', views.HomeView.as_view(), name='home'),
+
+    # /home/register/
+    url(r'^register/$', views.register_employee, name='register'),
+
+    # /home/login/
+    url(r'^login/$', views.login_employee, name='login'),
+
+    # /home/login/
+    url(r'^logout/$', views.logout_employee, name='logout'),
 
     # /groups/
     url(r'^groups/$', views.GroupsView.as_view(), name='groups'),
@@ -56,8 +66,5 @@ urlpatterns = [
     url(r'^projects/(?P<pk>[0-9]+)/delete/$', views.DeleteProjectView.as_view(), name='delete_project'),
 
     # /projects/<pk>/remove/<pk>/'
-    url(r'^projects/(?P<project>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_employee_project, name='remove_employee_project'),
-
-    # /employees/<pk>/remove/<pk>/'
-    url(r'^employees/(?P<employee>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_project, name='remove_project'),
+    url(r'^projects/(?P<project>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_employee_project, name='remove_employee_project')
 ]

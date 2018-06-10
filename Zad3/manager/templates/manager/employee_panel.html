@@ -3,7 +3,7 @@
 <div class="col-sm-12 col-md-6 col-lg-4 text-center">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a href="{% url 'manager:employee' employee.id %}">
+            <a href="{% url 'manager:employee' employee.user.id %}">
                 <h3>{{ employee.name }} {{ employee.surname }}</h3>
             </a>
         </div>
@@ -16,28 +16,30 @@
                 {% endif %}
             </div>
             <div class="col-sm-12 text-center buttons">
-                <div class="col-sm-12 text-center">
-                    {% ifmatches request.path "[a-z]+/groups/[0-9]+/$" %}
-                        <form action="{% url 'manager:remove_employee' group.id employee.id %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="group_id" value="{{ group.id }}"/>
-                            <button type="submit" class="btn btn-sm">
-                            <span class="glyphicon glyphicon-log-out"></span>
-                            Remove
-                        </button>
-                        </form>
-                    {% endifmatches %}
-                    {% ifmatches request.path "[a-z]+/projects/[0-9]+/$" %}
-                        <form action="{% url 'manager:remove_employee_project' project.id employee.id %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="group_id" value="{{ project.id }}"/>
-                            <button type="submit" class="btn btn-sm">
-                            <span class="glyphicon glyphicon-log-out"></span>
-                            Remove
-                        </button>
-                        </form>
-                    {% endifmatches %}
-                </div>
+                {% if request.user.is_superuser or request.user.id == employee.user.id %}
+                    <div class="col-sm-12 text-center">
+                        {% ifmatches request.path "[a-z]+/groups/[0-9]+/$" %}
+                            <form action="{% url 'manager:remove_employee' group.id employee.user.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="group_id" value="{{ group.id }}"/>
+                                <button type="submit" class="btn btn-sm">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                Remove
+                            </button>
+                            </form>
+                        {% endifmatches %}
+                        {% ifmatches request.path "[a-z]+/projects/[0-9]+/$" %}
+                            <form action="{% url 'manager:remove_employee_project' project.id employee.user.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="group_id" value="{{ project.id }}"/>
+                                <button type="submit" class="btn btn-sm">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                Remove
+                            </button>
+                            </form>
+                        {% endifmatches %}
+                    </div>
+                {% endif %}
             </div>
         </div>
 

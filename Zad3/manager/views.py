@@ -2,7 +2,9 @@ from django.views import generic
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from .models import Group, Employee, Project
-from .forms import GroupForm
+from .forms import GroupForm, UserForm, EmployeeForm, UserLoginForm
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 
 
 class HomeView(generic.TemplateView):
@@ -11,7 +13,7 @@ class HomeView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['group_count'] = Group.objects.count()
-        context['employee_count'] = Employee.objects.count()
+        context['employee_count'] = Employee.objects.count() - 1
         context['project_count'] = Project.objects.count()
         return context
 
@@ -57,7 +59,6 @@ class EmployeeView(generic.TemplateView):
 class ProjectView(generic.TemplateView):
     template_name = 'manager/project.html'
 
-
     def get_context_data(self, **kwargs):
         context = super(ProjectView, self).get_context_data(**kwargs)
         context['project'] = Project.objects.get(pk=self.kwargs['pk'])
@@ -69,61 +70,154 @@ class CreateGroupView(generic.CreateView):
     model = Group
     form_class = GroupForm
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:groups')
+        return super(CreateGroupView, self).dispatch(request, *args, **kwargs)
+
 
 class UpdateGroupView(generic.UpdateView):
     model = Group
     form_class = GroupForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:groups')
+        return super(UpdateGroupView, self).dispatch(request, *args, **kwargs)
 
 
 class DeleteGroupView(generic.DeleteView):
     model = Group
     success_url = reverse_lazy('manager:groups')
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:groups')
+        return super(DeleteGroupView, self).dispatch(request, *args, **kwargs)
+
 
 def remove_employee(request, group, pk):
-    Employee.objects.filter(pk=pk).update(group=None)
-    return redirect('manager:group', pk=group)
+    if not request.user.is_superuser:
+        return redirect('manager:group', pk=group)
+    else:
+        Employee.objects.filter(pk=pk).update(group=None)
+        return redirect('manager:group', pk=group)
 
 
 class CreateEmployeeView(generic.CreateView):
     model = Employee
     fields = ['name', 'surname', 'salary', 'group', 'projects']
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:employees')
+        return super(CreateEmployeeView, self).dispatch(request, *args, **kwargs)
+
 
 class UpdateEmployeeView(generic.UpdateView):
     model = Employee
     fields = ['name', 'surname', 'salary', 'group', 'projects']
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser and not request.user.id == int(kwargs.get('pk')):
+            return redirect('manager:employees')
+        return super(UpdateEmployeeView, self).dispatch(request, *args, **kwargs)
 
 
 class DeleteEmployeeView(generic.DeleteView):
     model = Employee
     success_url = reverse_lazy('manager:employees')
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:employees')
+        return super(DeleteEmployeeView, self).dispatch(request, *args, **kwargs)
+
 
 class CreateProjectView(generic.CreateView):
     model = Project
     fields = ['name', 'description', 'budget']
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:projects')
+        return super(CreateProjectView, self).dispatch(request, *args, **kwargs)
 
 
 class UpdateProjectView(generic.UpdateView):
     model = Project
     fields = ['name', 'description', 'budget']
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:project')
+        return super(UpdateProjectView, self).dispatch(request, *args, **kwargs)
+
 
 class DeleteProjectView(generic.DeleteView):
     model = Project
     success_url = reverse_lazy('manager:projects')
 
-
-def remove_employee_project(request, project, pk):
-    p = Project.objects.get(pk=project)
-    e = Employee.objects.get(pk=pk)
-    e.projects.remove(p)
-    return redirect('manager:project', pk=project)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('manager:projects')
+        return super(DeleteProjectView, self).dispatch(request, *args, **kwargs)
 
 
-def remove_project(request, employee, pk):
-    p = Project.objects.get(pk=pk)
-    e = Employee.objects.get(pk=employee)
-    e.projects.remove(p)
-    return redirect('manager:employee', pk=employee)
+# remove employee from project page or project from employee page
+def remove_employee_project(request, pk, project):
+    if not request.user.is_superuser and not request.user.id == int(pk):
+        if 'projects' in request.META.get('HTTP_REFERER'):
+            return redirect('manager:project', project)
+        else:
+            return redirect('manager:employee', pk)
+    else:
+        p = Project.objects.get(pk=project)
+        e = Employee.objects.get(pk=pk)
+        e.projects.remove(p)
+        if 'projects' in request.META.get('HTTP_REFERER'):
+            return redirect('manager:project', project)
+        else:
+            return redirect('manager:employee', pk)
+
+
+def register_employee(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+        if user_form.is_valid() and employee_form.is_valid():
+            user_form.save(employee_form=employee_form)
+            return redirect('manager:home')
+        else:
+            pass
+    else:
+        if request.user.is_authenticated:
+            return redirect('manager:home')
+        user_form = UserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+        return render(request, 'manager/registration_form.html', {
+            'user_form': user_form,
+            'employee_form': employee_form})
+
+
+def login_employee(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('manager:home')
+    else:
+        if request.user.is_authenticated:
+            return redirect('manager:home')
+        form = UserLoginForm(request.POST)
+        return render(request, 'manager/employee_form.html', {'form': form})
+
+
+def logout_employee(request):
+    logout(request)
+    return redirect('manager:login')
+

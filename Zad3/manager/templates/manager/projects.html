@@ -15,28 +15,30 @@
                             <div class="col-sm-12 text-center">
                             <p>{{ project.description }}</p>
                             </div>
-                            <div class="col-sm-12 text-center buttons">
-                                <div class="col-sm-6 text-center">
-                                    <form action="{% url 'manager:delete_project' project.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="group_id" value="{{ project.id }}"/>
-                                        <button type="submit" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                        Delete
-                                    </button>
-                                    </form>
+                            {% if request.user.is_superuser %}
+                                <div class="col-sm-12 text-center buttons">
+                                    <div class="col-sm-6 text-center">
+                                        <form action="{% url 'manager:delete_project' project.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="group_id" value="{{ project.id }}"/>
+                                            <button type="submit" class="btn btn-sm">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Delete
+                                        </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6 text-center">
+                                        <form action="{% url 'manager:update_project' project.id %}" method="get">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="group_id" value="{{ project.id }}"/>
+                                            <button type="submit" class="btn btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            Edit
+                                        </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 text-center">
-                                    <form action="{% url 'manager:update_project' project.id %}" method="get">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="group_id" value="{{ project.id }}"/>
-                                        <button type="submit" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                        Edit
-                                    </button>
-                                    </form>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

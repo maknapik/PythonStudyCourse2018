@@ -1,6 +1,7 @@
 import sys
 import pygame
 import properties
+import logging
 
 fg_color = ""
 
@@ -19,6 +20,7 @@ class Figure:
                 self.color = pygame.Color(content["color"])
         except:
             self.color = pygame.Color(fg_color)
+            logging.warning("Wrong format of color or color not defined. Set default.");
 
     def draw(self, screen):
         pass
@@ -29,14 +31,14 @@ class Point(Figure):
         try:
             super().__init__(content, palette)
         except:
-            print("Point super() initialize: KeyError")
+            logging.error("Point super() initialize: KeyError");
             sys.exit(1)
 
         try:
             self.x = content["x"]
             self.y = content["y"]
         except:
-            print("Point point initialize: KeyError")
+            logging.error("Point point initialize: KeyError");
             sys.exit(1)
 
     def draw(self, screen):
@@ -48,20 +50,20 @@ class Square(Figure):
         try:
             super().__init__(content, palette)
         except:
-            print("Rectangle super() initialize: KeyError")
+            logging.error("Square super() initialize: KeyError");
             sys.exit(1)
 
         try:
             self.x = content["x"]
             self.y = content["y"]
         except:
-            print("Rectangle point initialize: KeyError")
+            logging.error("Square point initialize: KeyError");
             sys.exit(1)
 
         try:
             self.size = content["size"]
         except:
-            print("Rectangle size initialize: KeyError")
+            logging.error("Square size initialize: KeyError");
             sys.exit(1)
 
     def draw(self, screen):
@@ -73,21 +75,21 @@ class Rectangle(Figure):
         try:
             super().__init__(content, palette)
         except:
-            print("Rectangle super() initialize: KeyError")
+            logging.error("Rectangle super() initialize: KeyError");
             sys.exit(1)
 
         try:
             self.x = content["x"]
             self.y = content["y"]
         except:
-            print("Rectangle point initialize: KeyError")
+            logging.error("Rectangle point initialize: KeyError");
             sys.exit(1)
 
         try:
             self.width = content["width"]
             self.height = content["height"]
         except:
-            print("Rectangle size initialize: KeyError")
+            logging.error("Rectangle size initialize: KeyError");
             sys.exit(1)
 
     def draw(self, screen):
@@ -99,20 +101,20 @@ class Circle(Figure):
         try:
             super().__init__(content, palette)
         except:
-            print("Circle super() initialize: KeyError")
+            logging.error("Circle super() initialize: KeyError");
             sys.exit(1)
 
         try:
             self.x = content["x"]
             self.y = content["y"]
         except:
-            print("Circle point initialize: KeyError")
+            logging.error("Circle point initialize: KeyError");
             sys.exit(1)
 
         try:
             self.radius = content["radius"]
         except:
-            print("Circle radius initialize: KeyError")
+            logging.error("Circle radius initialize: KeyError");
             sys.exit(1)
 
     def draw(self, screen):
@@ -124,7 +126,7 @@ class Polygon(Figure):
         try:
             super().__init__(content, palette)
         except:
-            print("Circle super() initialize: KeyError")
+            logging.error("Polygon super() initialize: KeyError");
             sys.exit(1)
 
         try:
@@ -132,7 +134,7 @@ class Polygon(Figure):
             for point in content["points"]:
                 self.points.append(point)
         except:
-            print("Polygon points initialize: KeyError")
+            logging.error("Polygon points initialize: KeyError");
             sys.exit(1)
 
     def draw(self, screen):

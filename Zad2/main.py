@@ -4,6 +4,8 @@ import figures
 import os, sys, getopt, pygame
 from pygame.locals import *
 
+import test
+
 
 def load_figures(figures_table, content, palette):
     for figure in content:

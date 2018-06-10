@@ -26,6 +26,14 @@
             {% with url_name=request.path %}
                 <div class="collapse navbar-collapse" id="topNavBar">
                     <ul class="nav navbar-nav">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item {% ifmatches url_name "[a-z]+/projects/$" %}active{% endifmatches %}">
+                                <a href="{% url 'manager:employee' request.user.id %}">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    Profile
+                                </a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item {% ifmatches url_name "[a-z]+/groups/$" %}active{% endifmatches %}">
                             <a href="{% url 'manager:groups' %}">
                                 <span class="glyphicon glyphicon-briefcase"></span>
@@ -45,66 +53,97 @@
                             </a>
                         </li>
                     </ul>
-                    {% ifmatches url_name "[a-z]+/groups/$" %}
+                    {% if request.user.is_authenticated %}
                         <ul class="nav navbar-nav navbar-right">
                           <li>
-                              <a href="{% url 'manager:add_group' %}">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    Add group
+                              <a href="{% url 'manager:logout' %}">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    Logout
                               </a>
                           </li>
                         </ul>
-                    {% endifmatches %}
-                    {% ifmatches url_name "[a-z]+/employees/$" %}
+                    {% else %}
                         <ul class="nav navbar-nav navbar-right">
                           <li>
-                              <a href="{% url 'manager:add_employee' %}">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    Add employee
+                              <a href="{% url 'manager:register' %}">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    Register
                               </a>
                           </li>
                         </ul>
-                    {% endifmatches %}
-                    {% ifmatches url_name "[a-z]+/projects/$" %}
                         <ul class="nav navbar-nav navbar-right">
                           <li>
-                              <a href="{% url 'manager:add_employee' %}">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    Add project
+                              <a href="{% url 'manager:login' %}">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    Login
                               </a>
                           </li>
                         </ul>
-                    {% endifmatches %}
-                    {% ifmatches url_name "[a-z]+/groups/[0-9]+/$" %}
-                        <ul class="nav navbar-nav navbar-right">
-                          <li>
-                              <a href="{% url 'manager:update_group' group.id %}">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    Edit group
-                              </a>
-                          </li>
-                        </ul>
-                    {% endifmatches %}
-                    {% ifmatches url_name "[a-z]+/employees/[0-9]+/$" %}
-                        <ul class="nav navbar-nav navbar-right">
-                          <li>
-                              <a href="{% url 'manager:update_employee' employee.id %}">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    Edit employee
-                              </a>
-                          </li>
-                        </ul>
-                    {% endifmatches %}
-                    {% ifmatches url_name "[a-z]+/projects/[0-9]+/$" %}
-                        <ul class="nav navbar-nav navbar-right">
-                          <li>
-                              <a href="{% url 'manager:update_project' project.id %}">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    Edit project
-                              </a>
-                          </li>
-                        </ul>
-                    {% endifmatches %}
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        {% ifmatches url_name "[a-z]+/groups/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:add_group' %}">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Add group
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                        {% ifmatches url_name "[a-z]+/employees/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:add_employee' %}">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Add employee
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                        {% ifmatches url_name "[a-z]+/projects/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:add_employee' %}">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        Add project
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                        {% ifmatches url_name "[a-z]+/groups/[0-9]+/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:update_group' group.id %}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Edit group
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                        {% ifmatches url_name "[a-z]+/projects/[0-9]+/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:update_project' project.id %}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Edit project
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                    {% endif %}
+                    {% if request.user.is_superuser or request.user.id == employee.user.id %}
+                        {% ifmatches url_name "[a-z]+/employees/[0-9]+/$" %}
+                            <ul class="nav navbar-nav navbar-right">
+                              <li>
+                                  <a href="{% url 'manager:update_employee' employee.user.id %}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Edit employee
+                                  </a>
+                              </li>
+                            </ul>
+                        {% endifmatches %}
+                    {% endif %}
                 </div>
             {% endwith %}
         </div>

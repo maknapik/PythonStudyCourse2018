@@ -5,46 +5,63 @@
     <div class="row content">
     {% if employees %}
             {% for employee in employees %}
-                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="{% url 'manager:employee' employee.id %}">
-                                <h3>{{ employee.name }} {{ employee.surname }}</h3>
-                            </a>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-sm-12 text-center">
-                                {% if employee.photo %}
-                                    <img src="{{ employee.photo.url }}" class="img-responsive">
-                                {% else %}
-                                    <img src="{% static "manager/images/group.gif" %}" class="img-responsive">
-                                {% endif %}
+                {% if not employee.user.is_superuser %}
+                    <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="{% url 'manager:employee' employee.user.id %}">
+                                    <h3>{{ employee.name }} {{ employee.surname }}</h3>
+                                </a>
                             </div>
-                            <div class="col-sm-12 text-center buttons">
-                                <div class="col-sm-6 text-center">
-                                    <form action="{% url 'manager:delete_employee' employee.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="group_id" value="{{ employee.id }}"/>
-                                        <button type="submit" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                        Delete
-                                    </button>
-                                    </form>
+                            <div class="panel-body">
+                                <div class="col-sm-12 text-center">
+                                    {% if employee.photo %}
+                                        <img src="{{ employee.photo.url }}" class="img-responsive">
+                                    {% else %}
+                                        <img src="{% static "manager/images/group.gif" %}" class="img-responsive">
+                                    {% endif %}
                                 </div>
-                                <div class="col-sm-6 text-center">
-                                    <form action="{% url 'manager:update_employee' employee.id %}" method="get">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="group_id" value="{{ employee.id }}"/>
-                                        <button type="submit" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                        Edit
-                                    </button>
-                                    </form>
+                                <div class="col-sm-12 text-center buttons">
+                                    {% if request.user.is_superuser %}
+                                        <div class="col-sm-6 text-center">
+                                            <form action="{% url 'manager:delete_employee' employee.user.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="group_id" value="{{ employee.id }}"/>
+                                                <button type="submit" class="btn btn-sm">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                                Delete
+                                            </button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                    {% if request.user.is_superuser %}
+                                        <div class="col-sm-6 text-center">
+                                            <form action="{% url 'manager:update_employee' employee.user.id %}" method="get">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="group_id" value="{{ employee.id }}"/>
+                                                <button type="submit" class="btn btn-sm">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                                Edit
+                                            </button>
+                                            </form>
+                                        </div>
+                                    {% elif request.user.id == employee.user.id %}
+                                        <div class="col-sm-12 text-center">
+                                            <form action="{% url 'manager:update_employee' employee.user.id %}" method="get">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="group_id" value="{{ employee.id }}"/>
+                                                <button type="submit" class="btn btn-sm">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                                Edit
+                                            </button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
         {% else %}
             <div class="col-sm-12 text-center">
