@@ -3,7 +3,7 @@ from .models import Group
 from .models import Employee
 from django.contrib.auth.models import User
 
-
+# adds new group
 class GroupForm(forms.ModelForm):
     description = forms.CharField(required=True, widget=forms.Textarea(attrs={'rows': 4, 'cols': 40}))
 
@@ -12,6 +12,7 @@ class GroupForm(forms.ModelForm):
         fields = ['name', 'description', 'photo']
 
 
+# register new employee (user)
 class UserForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -27,7 +28,8 @@ class UserForm(forms.Form):
         return user
 
 
-class EmployeeForm(forms.Form):
+# login employee
+class EmployeeLoginForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Name'}))
     surname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Surname'}))
 
@@ -39,6 +41,7 @@ class EmployeeForm(forms.Form):
         return employee
 
 
+# login user
 class UserLoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))

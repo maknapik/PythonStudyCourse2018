@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from . import views
-from django.contrib.auth.decorators import permission_required
 
 app_name = 'manager'
 
@@ -14,7 +13,7 @@ urlpatterns = [
     # /home/login/
     url(r'^login/$', views.login_employee, name='login'),
 
-    # /home/login/
+    # /home/logout/
     url(r'^logout/$', views.logout_employee, name='logout'),
 
     # /groups/

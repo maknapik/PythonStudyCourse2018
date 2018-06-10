@@ -2,11 +2,12 @@ from django.views import generic
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from .models import Group, Employee, Project
-from .forms import GroupForm, UserForm, EmployeeForm, UserLoginForm
+from .forms import GroupForm, UserForm, EmployeeLoginForm, UserLoginForm
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
 
+# home view
 class HomeView(generic.TemplateView):
     template_name = 'manager/home.html'
 
@@ -21,6 +22,7 @@ class HomeView(generic.TemplateView):
         return context
 
 
+# standard views
 class GroupsView(generic.ListView):
     template_name = 'manager/groups.html'
     model = Group
@@ -39,6 +41,7 @@ class ProjectsView(generic.ListView):
     context_object_name = 'projects'
 
 
+# views of certain model
 class GroupView(generic.TemplateView):
     template_name = 'manager/group.html'
 
@@ -69,6 +72,7 @@ class ProjectView(generic.TemplateView):
         return context
 
 
+# group managing views
 class CreateGroupView(generic.CreateView):
     model = Group
     form_class = GroupForm
@@ -108,10 +112,11 @@ def remove_employee(request, group, pk):
         return redirect('manager:group', pk=group)
 
 
+# employee managing views
 def add_employee(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        employee_form = EmployeeForm(request.POST)
+        employee_form = EmployeeLoginForm(request.POST)
         if user_form.is_valid() and employee_form.is_valid():
             user_form.save(employee_form=employee_form)
             return redirect('manager:home')
@@ -121,7 +126,7 @@ def add_employee(request):
         if not request.user.is_superuser:
             return redirect('manager:home')
         user_form = UserForm(request.POST)
-        employee_form = EmployeeForm(request.POST)
+        employee_form = EmployeeLoginForm(request.POST)
         return render(request, 'manager/registration_form.html', {
             'user_form': user_form,
             'employee_form': employee_form})
@@ -147,6 +152,7 @@ class DeleteEmployeeView(generic.DeleteView):
         return super(DeleteEmployeeView, self).dispatch(request, *args, **kwargs)
 
 
+# project managing views
 class CreateProjectView(generic.CreateView):
     model = Project
     fields = ['name', 'description', 'budget']
@@ -194,10 +200,11 @@ def remove_employee_project(request, pk, project):
             return redirect('manager:employee', pk)
 
 
+# register view
 def register_employee(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        employee_form = EmployeeForm(request.POST)
+        employee_form = EmployeeLoginForm(request.POST)
         if user_form.is_valid() and employee_form.is_valid():
             user_form.save(employee_form=employee_form)
             return redirect('manager:home')
@@ -207,12 +214,13 @@ def register_employee(request):
         if request.user.is_authenticated:
             return redirect('manager:home')
         user_form = UserForm(request.POST)
-        employee_form = EmployeeForm(request.POST)
+        employee_form = EmployeeLoginForm(request.POST)
         return render(request, 'manager/registration_form.html', {
             'user_form': user_form,
             'employee_form': employee_form})
 
 
+# login view
 def login_employee(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
@@ -233,6 +241,7 @@ def login_employee(request):
         return render(request, 'manager/employee_form.html', {'form': form})
 
 
+# logout view
 def logout_employee(request):
     logout(request)
     return redirect('manager:login')
