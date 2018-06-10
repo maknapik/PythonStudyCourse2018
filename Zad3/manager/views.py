@@ -15,6 +15,9 @@ class HomeView(generic.TemplateView):
         context['group_count'] = Group.objects.count()
         context['employee_count'] = Employee.objects.count() - 1
         context['project_count'] = Project.objects.count()
+        context['groups'] = Group.objects.all()
+        context['employees'] = Employee.objects.all()
+        context['projects'] = Project.objects.all()
         return context
 
 
@@ -73,7 +76,8 @@ class CreateGroupView(generic.CreateView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('manager:groups')
-        return super(CreateGroupView, self).dispatch(request, *args, **kwargs)
+        else:
+            return super(CreateGroupView, self).dispatch(request, *args, **kwargs)
 
 
 class UpdateGroupView(generic.UpdateView):
@@ -104,19 +108,28 @@ def remove_employee(request, group, pk):
         return redirect('manager:group', pk=group)
 
 
-class CreateEmployeeView(generic.CreateView):
-    model = Employee
-    fields = ['name', 'surname', 'salary', 'group', 'projects']
-
-    def dispatch(self, request, *args, **kwargs):
+def add_employee(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+        if user_form.is_valid() and employee_form.is_valid():
+            user_form.save(employee_form=employee_form)
+            return redirect('manager:home')
+        else:
+            pass
+    else:
         if not request.user.is_superuser:
-            return redirect('manager:employees')
-        return super(CreateEmployeeView, self).dispatch(request, *args, **kwargs)
+            return redirect('manager:home')
+        user_form = UserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+        return render(request, 'manager/registration_form.html', {
+            'user_form': user_form,
+            'employee_form': employee_form})
 
 
 class UpdateEmployeeView(generic.UpdateView):
     model = Employee
-    fields = ['name', 'surname', 'salary', 'group', 'projects']
+    fields = ['name', 'surname', 'salary', 'photo', 'group', 'projects']
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser and not request.user.id == int(kwargs.get('pk')):
@@ -210,6 +223,9 @@ def login_employee(request):
             if user is not None:
                 login(request, user)
                 return redirect('manager:home')
+            else:
+                form = UserLoginForm(request.POST)
+                return render(request, 'manager/employee_form.html', {'form': form})
     else:
         if request.user.is_authenticated:
             return redirect('manager:home')

@@ -48,7 +48,7 @@ urlpatterns = [
     url(r'^groups/(?P<group>[0-9]+)/(?P<pk>[0-9]+)/$', views.remove_employee, name='remove_employee'),
 
     # /employees/add
-    url(r'^employees/add/$', views.CreateEmployeeView.as_view(), name='add_employee'),
+    url(r'^employees/add/$', views.add_employee, name='add_employee'),
 
     # /employees/<pk>/update/
     url(r'^employees/(?P<pk>[0-9]+)/update/$', views.UpdateEmployeeView.as_view(), name='update_employee'),
@@ -57,7 +57,7 @@ urlpatterns = [
     url(r'^employees/(?P<pk>[0-9]+)/delete/$', views.DeleteEmployeeView.as_view(), name='delete_employee'),
 
     # /projects/add
-    url(r'^projects/add/$', views.CreateProjectView.as_view(), name='add_employee'),
+    url(r'^projects/add/$', views.CreateProjectView.as_view(), name='add_project'),
 
     # /projects/<pk>/update/
     url(r'^projects/(?P<pk>[0-9]+)/update/$', views.UpdateProjectView.as_view(), name='update_project'),

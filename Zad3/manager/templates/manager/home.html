@@ -9,6 +9,15 @@
                     {{ group_count }}
                 </div>
             </div>
+            {% for group in groups %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                            <a href="{% url 'manager:group' group.id %}">
+                                <h4>{{ group.name }}</h4>
+                            </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
         <div class="col-sm-4 text-center">
             <div class="panel panel-default">
@@ -17,6 +26,17 @@
                     {{ employee_count }}
                 </div>
             </div>
+            {% for employee in employees %}
+                {% if not employee.user.is_superuser %}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                <a href="{% url 'manager:employee' employee.user.id %}">
+                                    <h4>{{ employee.name }} {{ employee.surname }}</h4>
+                                </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
         <div class="col-sm-4 text-center">
             <div class="panel panel-default">
@@ -25,6 +45,15 @@
                     {{ project_count }}
                 </div>
             </div>
+            {% for project in projects %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                            <a href="{% url 'manager:project' project.id %}">
+                                <h4>{{ project.name }}</h4>
+                            </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

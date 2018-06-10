@@ -11,11 +11,13 @@
         <div class="col-sm-4 text-center">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% if employee.photo %}
-                        <img src="{{ employee.photo.url }}" class="img-responsive">
-                    {% else %}
-                        <img src="{% static "manager/images/avatar.png" %}" class="img-responsive">
-                    {% endif %}
+                    <div class="col-sm-12 text-center">
+                        {% if employee.photo %}
+                            <img src="{{ employee.photo.url }}" class="img-responsive">
+                        {% else %}
+                            <img src="{% static "manager/images/avatar.png" %}" class="img-responsive">
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
