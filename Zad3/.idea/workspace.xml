@@ -33,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manager/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            <state relative-caret-position="285">
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -45,13 +45,55 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zad3/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groups.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manager/templates/manager/groups.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manager/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="243" column="13" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="13" />
+            <state relative-caret-position="990">
+              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zad3/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,8 +102,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manager/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -69,32 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/templates/manager/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="employee.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manager/templates/manager/employee.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="315">
+              <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -113,15 +134,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="employee_panel.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/templates/manager/employee_panel.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -157,7 +169,6 @@
         <option value="$PROJECT_DIR$/manager/templates/base.html" />
         <option value="$PROJECT_DIR$/manager/templates/home.html" />
         <option value="$PROJECT_DIR$/manager/admin.py" />
-        <option value="$PROJECT_DIR$/Zad3/urls.py" />
         <option value="$PROJECT_DIR$/manager/is_active.py" />
         <option value="$PROJECT_DIR$/manager/templatetags/manager/tags.py" />
         <option value="$PROJECT_DIR$/Zad3/settings.py" />
@@ -183,9 +194,10 @@
         <option value="$PROJECT_DIR$/manager/models.py" />
         <option value="$PROJECT_DIR$/manager/templates/manager/home.html" />
         <option value="$PROJECT_DIR$/manager/templates/manager/project_panel.html" />
-        <option value="$PROJECT_DIR$/manager/forms.py" />
         <option value="$PROJECT_DIR$/manager/views.py" />
         <option value="$PROJECT_DIR$/manager/urls.py" />
+        <option value="$PROJECT_DIR$/manager/forms.py" />
+        <option value="$PROJECT_DIR$/Zad3/urls.py" />
       </list>
     </option>
   </component>
@@ -199,9 +211,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="961" />
-    <option name="width" value="949" />
-    <option name="height" value="1053" />
+    <option name="x" value="973" />
+    <option name="width" value="947" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -224,27 +236,6 @@
               <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
               <item name="Zad3" type="462c0819:PsiDirectoryNode" />
               <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Zad3" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Zad3" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Zad3" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,12 +244,6 @@
               <item name="manager" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Zad3" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Zad3" type="b2602c69:ProjectViewProjectNode" />
@@ -341,19 +326,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="961" y="0" width="949" height="1053" extended-state="4" />
+    <frame x="973" y="0" width="947" height="1052" extended-state="4" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32947367" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32982087" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32947367" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23393045" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2344245" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32982087" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -364,6 +348,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="8" weight="0.32947367" />
     </layout>
   </component>
@@ -509,16 +494,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/is_active.py" />
     <entry file="file://$PROJECT_DIR$/manager/templatetags/tags.py" />
-    <entry file="file://$PROJECT_DIR$/Zad3/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manager/templatetags/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -530,13 +505,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manager/templatetags/removeemployee.py" />
-    <entry file="file://$PROJECT_DIR$/Zad3/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manager/static/manager/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -565,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/templates/manager/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/django/forms/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3765">
@@ -597,13 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager/templates/manager/groups.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -643,24 +597,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/templates/manager/employee.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manager/templates/manager/project.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
           <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager/templates/manager/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -671,46 +611,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/forms.py">
+    <entry file="file://$PROJECT_DIR$/manager/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/templates/manager/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/templates/manager/employee.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/templates/manager/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/models.py">
+    <entry file="file://$PROJECT_DIR$/manager/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        <state relative-caret-position="285">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manager/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="243" column="13" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="13" />
+        <state relative-caret-position="990">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager/urls.py">
+    <entry file="file://$PROJECT_DIR$/Zad3/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        <state relative-caret-position="451">
+          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zad3/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/templates/manager/groups.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
         </state>
       </provider>
     </entry>

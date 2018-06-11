@@ -3,6 +3,7 @@ from .models import Group
 from .models import Employee
 from django.contrib.auth.models import User
 
+
 # adds new group
 class GroupForm(forms.ModelForm):
     description = forms.CharField(required=True, widget=forms.Textarea(attrs={'rows': 4, 'cols': 40}))
